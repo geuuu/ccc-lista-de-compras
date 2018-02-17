@@ -1,0 +1,10 @@
+li.list-group-item{
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+li.list-group-item.resaltado{
+  font-size:2em;
+}
+button.eliminar{
+
+}

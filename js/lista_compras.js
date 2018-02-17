@@ -25,6 +25,9 @@ function escribeLista(){
   if(elemento){
     shopping.push( elemento );
   }
+  renderizaLista();
+}
+function renderizaLista(){
   var indice = 0;
   var indice_maximo = shopping.length;
 
@@ -32,23 +35,47 @@ function escribeLista(){
   while (indice < indice_maximo){
 
     //escribir en la lista_compras
-//document.getElementById('lista').innerHTML =
-//document.getElementById('lista').innerHTML +
-//'<li>' + shopping [ indice ] + '</li>';
+    //document.getElementById('lista').innerHTML =
+    //document.getElementById('lista').innerHTML +
+    //'<li>' + shopping [ indice ] + '</li>';
 
-//jQuery
-//$('#lista').append( '<li>' + shopping [ indice ] + '</li>' );
+    //jQuery
+    $('#lista').append( '<li class="list-group-item">' +
+    shopping [ indice ] +
+    "<button class = 'btn btn-danger btn-sm float-right eliminar'><i class='far fa-times-circle'></i></button>" +
+    '</li>' );
 
-//Sin jQuery
-var li = document.createElement('li');
-var text = document.createTextNode(items[counter]);
-li.appendChild(text);
-document.getElementById('lista').appendChild(li);
+    //Sin jQuery
+    //var li = document.createElement('li');
+    //var text = document.createTextNode(items[counter]);
+    //li.appendChild(text);
+    //document.getElementById('lista').appendChild(li);
 
     indice++;
   }
 }
+$(document).ready(function(){
 
+
+$('#lista').delegate('li', 'mouseenter', function( event ){
+  event.preventDefault();
+  //var indice = $(this).parent().index();
+  $(this).parent().addClass('resaltado');
+  });
+
+  $('#lista').delegate('li', 'mouseleave', function( event ){
+    event.preventDefault();
+    //var indice = $(this).parent().index();
+    $(this).parent().removeClass('resaltado');
+    });
+
+    $('#lista').delegate('button.eliminar', 'mouseleave', function( event ){
+      event.preventDefault();
+      //var indice = $(this).parent().index();
+      $(this).parent().removeClass('resaltado');
+      });
+
+})
 document.getElementById('agregar').addEventListener('click', escribeLista);
-escribeLista();
+renderizaLista();
 //sin jQuery, puro Js
