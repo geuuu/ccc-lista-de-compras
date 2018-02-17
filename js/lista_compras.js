@@ -32,9 +32,19 @@ function escribeLista(){
   while (indice < indice_maximo){
 
     //escribir en la lista_compras
-document.getElementById('lista').innerHTML =
-document.getElementById('lista').innerHTML +
-'<li>' + shopping [ indice ] + '</li>'
+//document.getElementById('lista').innerHTML =
+//document.getElementById('lista').innerHTML +
+//'<li>' + shopping [ indice ] + '</li>';
+
+//jQuery
+//$('#lista').append( '<li>' + shopping [ indice ] + '</li>' );
+
+//Sin jQuery
+var li = document.createElement('li');
+var text = document.createTextNode(items[counter]);
+li.appendChild(text);
+document.getElementById('lista').appendChild(li);
+
     indice++;
   }
 }
