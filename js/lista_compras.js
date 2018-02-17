@@ -7,16 +7,7 @@ shopping[2] = "Cebolla";
 shopping[3] = "Cereal";
 shopping[4] = "Leche";
 shopping[5] = "Huevo";
-shopping[6] = "Limones";
-shopping[7] = "Jamon";
-shopping[8] = "Cafe";
-shopping[9] = "Pan";
-shopping[10] = "Azucar";
-shopping[11] = "Galletas";
-shopping[12] = "Shampoo";
-shopping[13] = "Pasta";
-shopping[14] = "Yogurt";
-shopping[15] = "Aguacate";
+
 
 // $('#agregar on.('click', function(){})') con jQuery
 
@@ -57,22 +48,43 @@ function renderizaLista(){
 $(document).ready(function(){
 
 
-$('#lista').delegate('li', 'mouseenter', function( event ){
+$('#lista')
+.delegate('li', 'mouseenter', function( event ){
   event.preventDefault();
   //var indice = $(this).parent().index();
-  $(this).parent().addClass('resaltado');
+  $(this).addClass('resaltado');
   });
 
-  $('#lista').delegate('li', 'mouseleave', function( event ){
+  $('#lista')
+  .delegate('li', 'mouseleave', function( event ){
     event.preventDefault();
     //var indice = $(this).parent().index();
-    $(this).parent().removeClass('resaltado');
+    $(this).removeClass('resaltado');
     });
 
-    $('#lista').delegate('button.eliminar', 'mouseleave', function( event ){
+      $('#lista')
+      .delegate('button.eliminar', 'mouseenter', function( event ){
+        event.preventDefault();
+        //var indice = $(this).parent().index();
+        $(this).parent().addClass('bg-warning');
+        });
+
+      $('#lista')
+      .delegate('button.eliminar', 'mouseleave', function( event ){
+        event.preventDefault();
+        //var indice = $(this).parent().index();
+        $(this).parent().removeClass('bg-warning');
+        });
+
+
+    $('#lista')
+    .delegate('button.eliminar', 'click', function( event ){
       event.preventDefault();
-      //var indice = $(this).parent().index();
-      $(this).parent().removeClass('resaltado');
+      var indice = $(this).parent().index();
+
+      shopping = shopping.slice( indice, 1);
+      renderizaLista();
+
       });
 
 })
